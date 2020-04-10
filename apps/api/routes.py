@@ -1,9 +1,11 @@
 
 import logging
+import ldap
+import json
 from flask.views import MethodView
+from apps.api.util import authenticate, filter_group
 
 from . import bp
-logger = logging.getLogger(__name__)
 
 
 class ActiveDirectoryGroup(MethodView):
@@ -14,11 +16,24 @@ class ActiveDirectoryGroup(MethodView):
         }
     }
 
+    def __init__(self):
+        super().__init__()
+
     def post(self):
         return "POST"
 
     def get(self):
-        return "GET"
+        ad_conn = authenticate(
+            "192.168.122.134",
+            "esadmin@esdemo.editshare.com",
+            "Changeme0479"
+        )
+        result = filter_group(
+            group_name="esusers",
+            ad_conn=ad_conn,
+            basedn="OU=editshare, DC=esdemo, DC=editshare, DC=com"
+        )
+        return json.dumps(result)
 
 
 bp.add_url_rule(
