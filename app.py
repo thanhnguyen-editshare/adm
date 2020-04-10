@@ -16,7 +16,7 @@ from flask import Flask
 
 import settings
 from lib.logging import configure_logging
-
+from lib.ad_manager import ADManager
 
 if os.environ.get('NEW_RELIC_LICENSE_KEY'):
     try:
@@ -46,6 +46,11 @@ def get_app(config=None):
             config.setdefault(key, getattr(settings, key))
 
     app.config.update(config)
+
+    app.adm = ADManager()
+    app.adm.authenticate(app.config['LDAP_URL'],
+                                       app.config['LDAP_USER'],
+                                       app.config['LDAP_PASSWORD'])
 
     installed = set()
 

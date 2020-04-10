@@ -6,4 +6,4 @@ from . import routes # noqa
 
 
 def init_app(app):
-    app.register_blueprint(bp, url_prefix='/ad')
+    app.register_blueprint(bp, url_prefix='/adm')

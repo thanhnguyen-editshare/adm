@@ -34,3 +34,5 @@ CORE_APPS = [
     'apps.swagger',
     'apps.api',
 ]
+
+LDAP_URL = "ldap://esdemo.editshare.com"
