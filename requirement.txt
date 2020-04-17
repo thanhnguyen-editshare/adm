@@ -10,4 +10,4 @@ cerberus==1.2
 PyYAML==5.1
 gunicorn==19.7.1
 honcho==1.0.1
-python3-ldap
+python-ldap

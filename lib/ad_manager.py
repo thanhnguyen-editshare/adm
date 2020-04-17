@@ -11,7 +11,7 @@ class LDAPADManager():
     """A driver use ldap to connect to AD"""
     con = None
 
-    def authenticate(self, url, username, password):
+    def authenticate(self, url):
         self.con = ldap.initialize(url)
         ldap.set_option(ldap.OPT_REFERRALS, 0)
         ldap.set_option(ldap.OPT_PROTOCOL_VERSION, 3)
